@@ -1,12 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Component } from 'react';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
 import { Read } from './components/Read';
 import { Create } from './components/Create';
 import { Content } from './components/Content';
-import { Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -26,10 +24,6 @@ class App extends Component {
               <Nav.Link href="/read">Articles</Nav.Link>
               <Nav.Link href="/create">Editor</Nav.Link>
             </Nav>
-            <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-info">Search</Button>
-            </Form>
           </Navbar>
 
           <br />
