@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Read } from './components/Read';
 import { Create } from './components/Create';
 import { Content } from './components/Content';
+import { Edit } from './components/Edit';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path='/' component={Content} exact />
             <Route path='/create' component={Create} exact />
             <Route path='/read' component={Read} exact />
+            <Route path='/edit/:id' component={Edit} />
           </Switch>
 
         </div>

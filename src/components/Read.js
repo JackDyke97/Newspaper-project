@@ -5,36 +5,44 @@ import axios from 'axios';
 
 export class Read extends React.Component {
 
+    constructor(){
+        super();
+
+        this.ReloadData = this.ReloadData.bind(this);
+    }
+
     state = {
-        articles: [
-            // {
-            //     "Title": "Spider-Man Menace",
-            //     "Author": "Jack",
-            //     "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFnHUBbTO3u5PPKUH4ZKghShjLja6TTFdqg&usqp=CAU"
-            // },
-            // {
-            // "Title": "Spider-Man Menace",
-            //     "Author": "Jack",
-            //     "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFnHUBbTO3u5PPKUH4ZKghShjLja6TTFdqg&usqp=CAU"
-            // }
-        ]
+        articles: []
+        
     }
 
     componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonblob/2f879259-4ab2-11eb-99b0-fb0785ae1f74')
+        axios.get('https://localhost:4000/api/articles')
             .then((response) => {
-                this.setState({ articles: response.data.Articles })
+                this.setState({ articles: response.data })
             })
             .catch((error) => {
                 console.log(error)
             });
     }
 
+    //function to automatically refresh our page
+    ReloadData(){
+        axios
+          .get("http://localhost:4000/api/articles")
+          .then((response) => {
+            this.setState({ articles: response.data });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+   }
+
     render() {
         return (
             <div>
                 <h1>The Daily Bugle</h1>
-                <News articles={this.state.articles}></News>
+                <News articles={this.state.articles} ReloadData={this.ReloadData}></News>
             </div>
         );
     }
