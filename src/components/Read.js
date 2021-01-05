@@ -18,7 +18,7 @@ export class Read extends React.Component {
     componentDidMount() {
         axios.get('http://localhost:4000/api/articles')
             .then((response) => {
-                this.setState({ article: response.data.articles })
+                this.setState({ article: response.data })
             })
             .catch((error) => {
                 console.log(error)
@@ -30,7 +30,7 @@ export class Read extends React.Component {
         axios
           .get("http://localhost:4000/api/articles")
           .then((response) => {
-            this.setState({ article: response.data.article });
+            this.setState({ article: response.data });
           })
           .catch((error) => {
             console.log(error);

@@ -22,9 +22,9 @@ export class Edit extends React.Component {
 
     componentDidMount(){
         console.log(this.props.match.params.id);
-
-        axios.get('http://localhost:4000/api/article' +this.props.match.params.id)
-        .then(response=>{
+//getting our app.get function from our server.js to allow us to get the variables and id for our data
+        axios.get('http://localhost:4000/api/articles/' +this.props.match.params.id)
+        .then(response => {
             this.setState({
                 _id:response.data._id,
                 Title:response.data.title,
@@ -32,7 +32,7 @@ export class Edit extends React.Component {
                 Text:response.data.text,
                 Image:response.data.image
 
-            })
+            });
         })
         .catch((error)=>{
                 console.log(error);
@@ -68,19 +68,20 @@ export class Edit extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         alert("Article: " + this.state.Title + " " + this.state.Author + " " + this.state.Text + " " + this.state.Image);
-        const newArticle = {
+
+        const editArticle = {
             title:this.state.Title,
             author:this.state.Author,
             text:this.state.Text,
             image:this.state.Image,
             _id: this.state._id
-        }
+        };
 
-        axios.put('http://localhost:4000/api/article'+this.state._id, newArticle)
-        .then(res =>{
+        axios.put('http:localhost:4000/api/articles/' +this.state._id, editArticle)
+        .then(res => {
             console.log(res.data)
         })
-        .catch((err=>{
+        .catch((err => {
             console.log(err);
         }))
 }
@@ -94,23 +95,23 @@ export class Edit extends React.Component {
                     the  input allows us to define what type we want and to tyle it using className
                     and also to define the value that is called*/}
                 <div className="form-group">
-                    <label>Add Article Title</label>
+                    <label>Edit Article Title</label>
                     <input type='text' className='form-control' value={this.state.Title} onChange={this.onChangeTitle}></input>
                 </div>
                 <div className="form-group">
-                    <label>Add Article Author</label>
+                    <label>Edit Article Author</label>
                     <input type='text' className='form-control' value={this.state.Author} onChange={this.onChangeAuthor}></input>
                 </div>
                 <div className="form-group">
-                    <label>Add Article Text</label>
+                    <label>Edit Article Text</label>
                     <input type='text' className='form-control' value={this.state.Text} onChange={this.onChangeText}></input>
                 </div>
                 <div className="form-group">
-                    <label>Add Article Image</label>
+                    <label>Edit Article Image</label>
                     <textarea type='text' className='form-control' value={this.state.Image} onChange={this.onChangeImage}></textarea>
                 </div>
                 <div className="form-group">
-                    <input type='submit' value='Add Article' className='btn btn-primary'></input>
+                    <input type='submit' value='Edit Article' className='btn btn-primary'></input>
                 </div>
             </div>
             );

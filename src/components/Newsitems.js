@@ -21,7 +21,7 @@ export class Newsitems extends React.Component {
         e.preventDefault();
         console.log("Delete: " + this.props.article._id);
 
-        axios.delete("http://localhost:4000/api/article" + this.props.article._id)
+        axios.delete("http://localhost:4000/api/articles/" + this.props.article._id)
             .then(() => {
                 this.props.ReloadData();
             })
@@ -35,19 +35,19 @@ export class Newsitems extends React.Component {
 
                 <Card>
                     <Card.Body>
-                        <Card.Title>{this.props.article.Title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{this.props.article.Author}</Card.Subtitle>
-                        <img src={this.props.article.Image} width="250" height="200"></img>
+                        <Card.Title>{this.props.article.title}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{this.props.article.author}</Card.Subtitle>
+                        <img src={this.props.article.image} width="250" height="200"></img>
                         <Card.Text>
-                            {this.props.article.Text}
+                            {this.props.article.text}
                         </Card.Text>
                     </Card.Body>
-                    <Link to={"/Edit/" + this.props.article._id} className="btn btn-primary">Edit Article</Link>
+                    <Link to={"/edit/" + this.props.article._id} className="btn btn-primary">Edit Article</Link>
 
                     {/* delete button that calls our deleteArticle Function */}
                     <Button variant="danger" onClick={this.DeleteArticle}>
                         Delete
-          </Button>
+                    </Button>
 
                 </Card>
             </div>
