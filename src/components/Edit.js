@@ -23,7 +23,7 @@ export class Edit extends React.Component {
     componentDidMount(){
         console.log(this.props.match.params.id);
 
-        axios.get('http://localhost:4000/api/articles' +this.props.match.params.id)
+        axios.get('http://localhost:4000/api/article' +this.props.match.params.id)
         .then(response=>{
             this.setState({
                 _id:response.data._id,
@@ -76,7 +76,7 @@ export class Edit extends React.Component {
             _id: this.state._id
         }
 
-        axios.put('http://localhost:4000/api/articles'+this.state._id, newArticle)
+        axios.put('http://localhost:4000/api/article'+this.state._id, newArticle)
         .then(res =>{
             console.log(res.data)
         })

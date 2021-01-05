@@ -7,19 +7,18 @@ export class Read extends React.Component {
 
     constructor(){
         super();
-
         this.ReloadData = this.ReloadData.bind(this);
     }
 
     state = {
-        articles: []
+        article: []
         
-    }
+    };
 
     componentDidMount() {
-        axios.get('https://localhost:4000/api/articles')
+        axios.get('http://localhost:4000/api/articles')
             .then((response) => {
-                this.setState({ articles: response.data })
+                this.setState({ article: response.data.articles })
             })
             .catch((error) => {
                 console.log(error)
@@ -31,7 +30,7 @@ export class Read extends React.Component {
         axios
           .get("http://localhost:4000/api/articles")
           .then((response) => {
-            this.setState({ articles: response.data });
+            this.setState({ article: response.data.article });
           })
           .catch((error) => {
             console.log(error);
@@ -42,7 +41,7 @@ export class Read extends React.Component {
         return (
             <div>
                 <h1>The Daily Bugle</h1>
-                <News articles={this.state.articles} ReloadData={this.ReloadData}></News>
+                <News article={this.state.article} ReloadData={this.ReloadData}></News>
             </div>
         );
     }
