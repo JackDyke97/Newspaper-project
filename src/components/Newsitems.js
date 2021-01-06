@@ -31,8 +31,11 @@ export class Newsitems extends React.Component {
             .catch();
     }
 
-
-
+//Below: div containing the styling for how our data is displayed on the read page
+//Card is used for individual components
+//this.props is used to call title,image, text, and author 
+//Link is used for sending the user to the edit page
+//delete button calls the delete article function when clicked
     render() {
         return (
             <div className='App' style={{ display: 'inline-block', justifyContent:'center', flexDirection: 'row'}}>

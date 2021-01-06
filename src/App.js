@@ -15,6 +15,7 @@ class App extends Component {
     return (
       //our navbar borrowed from react bootstrap
       //the router that is being used to define the paths for each component
+      //logo being used as a shortcut back to the home page as well
 
       <Router>
         <div className="App">

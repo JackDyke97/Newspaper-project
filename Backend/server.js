@@ -4,9 +4,11 @@ const port = 4000
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const path = require('path');
 
+//allows us to use cors
 app.use(cors());
-
+//allows the use of database functions
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,POST, PUT, DELETE, OPTIONS");
@@ -17,11 +19,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+//configuration lines for where we find out build folder and static files
+app.use(express.static(path.join(__dirname,'../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')))
 
+//allows the use of bodyParser middleware
 app.use(bodyParser.urlencoded({ extended: false }))
-
 app.use(bodyParser.json())
-
+//Connecting to the mongoose db
 const myConnectionString =
   "mongodb+srv://admin:admin@cluster0.rrthq.mongodb.net/newspaper?retryWrites=true&w=majority";
 mongoose.connect(myConnectionString, { useNewUrlParser: true });
@@ -45,7 +50,7 @@ app.get('/api/articles', (req, res) => {
   });;
 });
 
-//method thats reads data from the database and display, edit and delete different parts of our app
+//method thats reads data from the database
 app.get("/api/articles/:id", (req, res) => {
   console.log(req.params.id);
 
@@ -53,7 +58,7 @@ app.get("/api/articles/:id", (req, res) => {
     res.json(data);
   })
 })
-
+//allows us to update the data from our database
 app.put('/api/articles/:id', (req, res) => {
   console.log("Update Article: "+req.params.id);
   console.log(req.body);
@@ -63,7 +68,7 @@ app.put('/api/articles/:id', (req, res) => {
       res.send(data);
     })
 })
-
+//allows us to delete data from our database
 app.delete('/api/articles/:id', (req, res) => {
   console.log("Delete Article: " + req.params.id);
   ArticleModel.findByIdAndDelete(req.params.id, (err, data) => {
@@ -89,6 +94,12 @@ app.post('/api/articles', (req, res) => {
   res.send("Item added");
 });
 
+//send the index.html file when it gets a html get request
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+});
+
+//so our app is listening at the port we assigned
 app.listen(port, () => {
   console.log(`app listening at http:localhost:${port}`)
 })
