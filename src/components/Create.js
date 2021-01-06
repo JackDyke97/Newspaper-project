@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Col, Form, Row } from 'react-bootstrap';
+import Card from "react-bootstrap/Card";
 //create component used to display in the app 
 
 export class Create extends React.Component {
 
     constructor() {
         super();
+
         //binding the onChange functions 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -49,7 +51,7 @@ export class Create extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Article: " + this.state.Title + " " + this.state.Author + " " + this.state.Text + " " + this.state.Image);
+        alert("Article Added:" + this.state.Title +" ");
 
         const newArticle = {
             title: this.state.Title,
@@ -69,43 +71,43 @@ export class Create extends React.Component {
 
     render() {
         return (
-            <div className='App'>
+
+               <div className='App' style={{display:'flex', justifyContent:'center'}}>
+                <Card style={{width:800 }}>
+                <img src="../../images/dailybugle.jpg"  />
                 <form onSubmit={this.onSubmit}>
-                    {/* first div tag is for input control
-                    The other tags are for setting the title,year and poster respectively  
-                    The label is used to show the text on our website
-                    the  input allows us to define what type we want and to tyle it using className
-                    and also to define the value that is called*/}
-                    <div className="form-group">
-                        <label>Add Article Title: </label>
-                        <input type='text' className='form-control' value={this.state.Title}
+                    <Form.Row>
+                        <Col>
+                        <label>Article Title:</label>
+                        <input type='text' className='form-control' placeholder="Title" value={this.state.Title}
                             onChange={this.onChangeTitle}></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Add Author:</label>
-                        <input type='text' className='form-control' value={this.state.Author}
+                            </Col>
+                            <Col>
+                            <label>Article Author:</label>
+                        <input type='text' placeholder="Author" className='form-control' value={this.state.Author}
                             onChange={this.onChangeAuthor}>
                         </input>
-                        </div>
+                        </Col>
+                        </Form.Row>
                         <div className="form-group">
                         <label>Add Text:</label>
-                        <input type='text' className='form-control' value={this.state.Text}
+                        <input type='text' className='form-control' placeholder="Insert Text Here" value={this.state.Text}
                             onChange={this.onChangeText}>
                         </input>
                         </div>
                         <div className='form-group'>
                             <label>Article Picture:</label>
-                            <textarea type='text' className='form-control' value={this.state.Image}
+                            <textarea type='text' className='form-control' placeholder="Link your picture here" value={this.state.Image}
                                 onChange={this.onChangeImage}>
 
                             </textarea>
                         </div>
                     <div className="form-group">
-                        <input type='submit' className='btn btn-primary' value='Add Article'>
-                        </input>
+                        <input type='submit' className='btn btn-success' value='Add Article'></input>
+                        
                     </div>
                 </form>
-
+                </Card>
             </div>
         );
     }

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 
 export class Newsitems extends React.Component {
@@ -16,6 +17,8 @@ export class Newsitems extends React.Component {
         this.DeleteArticle = this.DeleteArticle.bind(this);
     }
 
+
+
     //function for delete article button
     DeleteArticle(e) {
         e.preventDefault();
@@ -28,29 +31,33 @@ export class Newsitems extends React.Component {
             .catch();
     }
 
+
+
     render() {
         return (
-            <div>
-
-
+            <div className='App' style={{ display: 'inline-block', justifyContent:'center', flexDirection: 'row'}}>
                 <Card>
-                    <Card.Body>
-                        <Card.Title>{this.props.article.title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{this.props.article.author}</Card.Subtitle>
-                        <img src={this.props.article.image} width="250" height="200"></img>
-                        <Card.Text>
-                            {this.props.article.text}
-                        </Card.Text>
-                    </Card.Body>
-                    <Link to={"/edit/" + this.props.article._id} className="btn btn-primary">Edit Article</Link>
+                    <Container>
+                        <Card.Body>
+                            <Card.Title> {this.props.article.title}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted"> {this.props.article.author}</Card.Subtitle>
+                            <img src={this.props.article.image} width="350" height="400"></img> <br />
 
-                    {/* delete button that calls our deleteArticle Function */}
-                    <Button variant="danger" onClick={this.DeleteArticle}>
-                        Delete
-                    </Button>
+                            <Card.Text> {this.props.article.text}</Card.Text>
 
+                            <Link to={"/edit/" + this.props.article._id} style={{ height: 100, width: 100 }} className="btn btn-lg btn-warning"> Edit Article</Link>
+
+                            {/* delete button that calls our deleteArticle Function */}
+                            <Button style={{ height: 100, width: 100 }} variant="danger" size="lg" onClick={this.DeleteArticle}>
+                                Delete
+                     </Button>
+                        </Card.Body>
+                    </Container>
                 </Card>
             </div>
         );
+
+
     }
+
 }

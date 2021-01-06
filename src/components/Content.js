@@ -6,8 +6,8 @@ export class Content extends React.Component {
     render() {
         return (
             <div>
-                <h1>Test</h1>
-                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                <img src="../../images/dailybugle.jpg" />
+                <h2>Created by J Jonah Jameson</h2>
             </div>
         );
     }

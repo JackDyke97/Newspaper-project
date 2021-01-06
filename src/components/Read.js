@@ -3,6 +3,7 @@ import { News } from './News';
 import axios from 'axios';
 
 
+
 export class Read extends React.Component {
 
     constructor(){
@@ -40,7 +41,7 @@ export class Read extends React.Component {
     render() {
         return (
             <div>
-                <h1>The Daily Bugle</h1>
+                
                 <News article={this.state.article} ReloadData={this.ReloadData}></News>
             </div>
         );

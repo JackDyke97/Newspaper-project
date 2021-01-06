@@ -9,6 +9,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
+
 class App extends Component {
   render() {
     return (
@@ -19,7 +20,7 @@ class App extends Component {
         <div className="App">
 
           <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="/"><img src="../../images/logo.jpg" height='70' width='125' /></Navbar.Brand>
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/read">Articles</Nav.Link>

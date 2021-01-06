@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from'axios';
+import { Col, Form, Row } from 'react-bootstrap';
 
 //create component used to display in the app 
 
@@ -68,7 +69,7 @@ export class Edit extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Article: " + this.state.Title + " " + this.state.Author + " " + this.state.Text+" "+ this.state.Image);
+        alert("Article Updatedj:" + this.state.Title +" ");
 
         const editArticle = {
             title:this.state.Title,
@@ -91,28 +92,32 @@ export class Edit extends React.Component {
         return (
             <div className='App'>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Edit Article Title: </label>
-                        <input type='text' className='form-control' value={this.state.Title}
+                    <Form.Row>
+                        <Col>
+                        <label>Edit Article Title:</label>
+                        <input type='text' className='form-control' placeholder="Title" value={this.state.Title}
                             onChange={this.onChangeTitle}></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Edit Article Author:</label>
-                        <input type='text' className='form-control' value={this.state.Author}
-                        onChange={this.onChangeAuthor}></input>
-                        </div>
+                            </Col>
+                            <Col>
+                            <label>Edit Article Author:</label>
+                        <input type='text' placeholder="Author" className='form-control' value={this.state.Author}
+                            onChange={this.onChangeAuthor}>
+                        </input>
+                        </Col>
+                        </Form.Row>
                         <div className="form-group">
-                        <label>Edit Article Text:</label>
-                        <input type='text' className='form-control' value={this.state.Text}
-                        onChange={this.onChangeText}></input>
+                        <label>Edit Text:</label>
+                        <input type='text' className='form-control' placeholder="Insert Text Here" value={this.state.Text}
+                            onChange={this.onChangeText}>
+                        </input>
                         </div>
-                    <div className='form-group'>
-                        <label>Article Picture:</label>
-                        <textarea type='text' className='form-control' value={this.state.Image}
-                        onChange={this.onChangeImage}>
+                        <div className='form-group'>
+                            <label>Edit Article Picture:</label>
+                            <textarea type='text' className='form-control' placeholder="Link your picture here" value={this.state.Image}
+                                onChange={this.onChangeImage}>
 
-                        </textarea>
-                    </div>
+                            </textarea>
+                        </div>
                     <div className="form-group">
                         <input type='submit' className='btn btn-primary' value='Edit Article'>
                         </input>
